@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSFiddle 9a142bhd</title>
+
+  <style>
+    /* CONFIGURACIÓN GENERAL */
+
+{ margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+body { font-family: Arial, Helvetica, sans-serif; background: #fffaf1; color: #343044; line-height: 1.7; }
+
+section { scroll-margin-top: 85px; }
+
+:root { --morado: #49335f; --rosa: #d96b91; --amarillo: #f4c65e; --azul: #76b9c1; --coral: #e99575; --crema: #fffaf1; }
+
+/* MENÚ */
+
+header { background: var(--morado); padding: 17px 7%; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px #0002; }
+
+.menu { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+
+.logo { color: white; text-decoration: none; font-size: 23px; font-weight: 900; letter-spacing: 1px; }
+
+.logo span { color: var(--amarillo); }
+
+.menu ul { display: flex; gap: 22px; list-style: none; flex-wrap: wrap; }
+
+.menu ul a { color: white; text-decoration: none; font-size: 13px; font-weight: bold; transition: .3s; }
+
+.menu ul a:hover { color: var(--amarillo); }
+
+/* PORTADA */
+
+.hero { min-height: 590px; padding: 75px 9%; display: flex; align-items: center; justify-content: space-between; gap: 50px; flex-wrap: wrap; overflow: hidden;
+
+background:
+    radial-gradient(circle at 80% 20%, #ffffff18 0 3px, transparent 4px),
+    linear-gradient(125deg, #49335f, #81547f, #d77e78);
+
+color: white;
+
+
+}
+
+.hero-texto { max-width: 540px; animation: aparecer 1s ease; }
+
+.etiqueta { display: inline-block; background: var(--amarillo); color: var(--morado); padding: 8px 16px; font-size: 11px; font-weight: 900; letter-spacing: 2px; border-radius: 3px; }
+
+.hero h1 { font-size: clamp(48px, 7vw, 82px); line-height: 1.05; margin: 25px 0; font-weight: 900; letter-spacing: -3px; text-shadow: 4px 4px #35204f; }
+
+.hero h1 span { color: var(--amarillo); }
+
+.frase { font-size: 15px; max-width: 430px; margin-bottom: 30px; color: #f5eaf3; }
+
+.boton { display: inline-block; background: var(--amarillo); color: var(--morado); padding: 14px 24px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 900; letter-spacing: 1px; box-shadow: 0 5px 0 #bd8c39; transition: .3s; }
+
+.boton:hover { background: white; transform: translateY(-4px); }
+
+.hero-info { display: flex; gap: 15px; margin-top: 45px; font-size: 10px; letter-spacing: 2px; color: #e8d9ed; }
+
+/* EDIFICIO */
+
+.hero-dibujo { position: relative; width: 290px; margin: 25px auto; padding-top: 35px; }
+
+.cartel { background: white; color: var(--morado); width: 175px; text-align: center; font-size: 12px; font-weight: 900; line-height: 1.4; padding: 12px; margin: auto auto 12px; border: 3px solid var(--morado); transform: rotate(-3deg); }
+
+.edificio { background: #f1d4a5; border: 8px solid #49335f; border-radius: 5px 5px 0 0; padding: 15px 15px 0; box-shadow: 12px 12px 0 #35204f55; }
+
+.tejado { height: 12px; background: #a66e5c; margin: -15px -15px 15px; }
+
+.piso-edificio { display: flex; justify-content: space-around; gap: 15px; padding: 9px 0; border-bottom: 2px solid #d0ad7c; }
+
+.ventana { width: 75px; height: 52px; background: #87b9c8; border: 5px solid #74523e; position: relative; display: flex; align-items: center; justify-content: center; }
+
+.ventana::before { content: ""; position: absolute; height: 100%; width: 3px; background: #74523e; }
+
+.ventana span { font-size: 9px; color: #fff; font-weight: bold; z-index: 1; }
+
+.entrada { width: 85px; height: 65px; background: #83544b; border: 5px solid #49335f; border-bottom: 0; margin: 12px auto 0; display: flex; justify-content: center; align-items: center; color: white; font-size: 25px; font-weight: bold; }
+
+.pegatina { position: absolute; right: -30px; bottom: 20px; background: var(--amarillo); color: var(--morado); padding: 13px; font-size: 10px; font-weight: 900; text-align: center; border-radius: 50%; transform: rotate(9deg); box-shadow: 3px 4px 0 #0003; }
+
+/* FRANJA */
+
+.franja { background: var(--amarillo); color: var(--morado); padding: 15px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; text-align: center; font-size: 12px; }
+
+.franja strong { letter-spacing: 1px; }
+
+/* SECCIONES */
+
+.seccion { padding: 90px 9%; }
+
+.titulo-seccion { margin-bottom: 45px; }
+
+.numero-seccion { display: inline-block; color: #bd5781; font-size: 11px; font-weight: 900; letter-spacing: 2px; }
+
+.titulo-seccion h2 { color: var(--morado); font-size: clamp(34px, 5vw, 50px); line-height: 1.15; margin: 12px 0; letter-spacing: -1px; }
+
+.titulo-seccion > p { color: #777; font-size: 14px; }
+
+/* HISTORIA */
+
+.historia { background: var(--crema); }
+
+.historia-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 45px; align-items: start; }
+
+.historia-texto h3 { font-size: 22px; color: var(--morado); margin-bottom: 20px; }
+
+.historia-texto p { font-size: 14px; color: #686477; margin-bottom: 18px; line-height: 1.9; }
+
+.historia-texto strong { color: #b64c79; }
+
+.mini-frase { margin-top: 30px; background: #f8e4eb; border-left: 5px solid var(--rosa); padding: 22px; }
+
+.mini-frase span { font-size: 10px; letter-spacing: 2px; color: #b64c79; font-weight: 900; }
+
+.mini-frase p { font-size: 21px; font-weight: bold; color: var(--morado); margin: 10px 0 0; }
+
+.ficha { background: white; border: 1px solid #eee3ec; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 25px #49335f12; }
+
+.ficha h3 { background: var(--morado); color: white; padding: 20px; font-size: 15px; letter-spacing: 1px; }
+
+.ficha div { display: flex; justify-content: space-between; gap: 10px; padding: 13px 18px; border-bottom: 1px solid #eee; font-size: 12px; }
+
+.ficha div:nth-child(even) { background: #faf5fb; }
+
+.ficha div span { color: #888; }
+
+.ficha div b { color: var(--morado); }
+
+/* PERSONAJES */
+
+.vecinos { background: #eee8f5; }
+
+.tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 23px; }
+
+.personaje { padding: 27px; min-height: 330px; border-radius: 7px; position: relative; transition: .3s; border-bottom: 6px solid #00000015; }
+
+.personaje:hover { transform: translateY(-8px); box-shadow: 0 12px 25px #00000018; }
+
+.morado { background: #d0bce9; }
+
+.amarillo { background: #ffe39c; }
+
+.naranja { background: #ffd0b5; }
+
+.rosa { background: #f7c4d5; }
+
+.azul { background: #b6dce5; }
+
+.verde { background: #c5dfb9; }
+
+.piso { display: inline-block; background: #ffffffa8; padding: 5px 11px; border-radius: 3px; font-size: 9px; letter-spacing: 1px; font-weight: 900; }
+
+.inicial { width: 65px; height: 65px; border-radius: 50%; background: #ffffff80; display: flex; align-items: center; justify-content: center; margin: 20px 0; font-size: 21px; font-weight: 900; color: var(--morado); border: 2px solid #ffffffb0; }
+
+.personaje h3 { font-size: 21px; color: var(--morado); margin-bottom: 12px; }
+
+.personaje p { color: #51475d; font-size: 12px; line-height: 1.8; margin-bottom: 18px; }
+
+.personaje small { font-size: 10px; font-weight: 900; color: #574765; }
+
+/* JUNTA */
+
+.junta { background: var(--morado); padding: 85px 9%; }
+
+.junta-contenido { max-width: 800px; background: #fffaf1; color: #49335f; padding: 45px; margin: auto; position: relative; box-shadow: 10px 10px 0 var(--amarillo); transform: rotate(-.5deg); }
+
+.junta-contenido > span { color: #c45c83; }
+
+.junta h2 { font-size: 32px; margin: 15px 0; }
+
+.junta-contenido > p { font-size: 13px; color: #777; margin-bottom: 25px; }
+
+.junta h3 { font-size: 13px; letter-spacing: 2px; margin-bottom: 10px; }
+
+.junta ul { list-style: none; }
+
+.junta li { padding: 10px 0; border-bottom: 1px dashed #d9cde0; font-size: 13px; }
+
+.junta li::before { content: "✓"; color: #c45c83; font-weight: bold; margin-right: 12px; }
+
+.firma { text-align: right; margin-top: 25px; font-weight: bold; color: #49335f; }
+
+.firma span { color: #888; font-size: 11px; }
+
+/* COTILLEOS */
+
+.cotilleos { background: #fffaf1; }
+
+.noticias { display: grid; grid-template-columns: repeat(3, 1fr); gap: 23px; }
+
+.nota { padding: 28px; min-height: 260px; box-shadow: 4px 6px 12px #00000010; transition: .3s; border-radius: 4px; }
+
+.nota:hover { transform: translateY(-7px) rotate(1deg); }
+
+.nota-amarilla { background: #ffe49c; }
+
+.nota-rosa { background: #f8c6d7; }
+
+.nota-azul { background: #b8dfe5; }
+
+.nota > span { font-size: 10px; font-weight: 900; letter-spacing: 2px; }
+
+.nota h3 { font-size: 21px; line-height: 1.3; margin: 25px 0 15px; color: #49335f; }
+
+.nota p { font-size: 13px; line-height: 1.8; color: #5d5263; }
+
+.nota small { display: block; margin-top: 20px; font-size: 10px; color: #77677c; }
+
+/* CURIOSIDADES */
+
+.curiosidades { background: #e8f3ef; }
+
+.curiosidades .numero-seccion { color: #4b8d7c; }
+
+.curiosidades-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+
+.curiosidades-grid article { background: white; padding: 30px; border-radius: 6px; border-top: 5px solid var(--azul); transition: .3s; }
+
+.curiosidades-grid article:nth-child(2) { border-color: var(--rosa); }
+
+.curiosidades-grid article:nth-child(3) { border-color: var(--amarillo); }
+
+.curiosidades-grid article:nth-child(4) { border-color: var(--coral); }
+
+.curiosidades-grid article:hover { transform: translateY(-6px); box-shadow: 0 10px 25px #00000010; }
+
+.curiosidades-grid article > span { font-size: 32px; font-weight: 900; color: #d8c5e1; }
+
+.curiosidades-grid h3 { font-size: 20px; color: var(--morado); margin: 10px 0; }
+
+.curiosidades-grid p { font-size: 13px; color: #777; line-height: 1.8; }
+
+/* ===================================== JUEGOS INTERACTIVOS ===================================== */
+
+.juegos { background: #f5edf7; }
+
+.juegos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+
+.juego-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 8px 25px #49335f12; border-top: 6px solid var(--rosa); transition: .3s; }
+
+.juego-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px #49335f20; }
+
+.juego-etiqueta { display: inline-block; background: #f8e4eb; color: #b64c79; padding: 6px 12px; border-radius: 4px; font-size: 10px; font-weight: 900; letter-spacing: 1px; }
+
+.juego-card h3 { color: var(--morado); font-size: 24px; margin: 18px 0 12px; }
+
+.juego-card > p { font-size: 13px; color: #777; margin-bottom: 20px; }
+
+.puertas { display: flex; justify-content: center; gap: 15px; margin: 25px 0; }
+
+.puerta { background: #49335f; color: white; border: 4px solid #352543; border-radius: 6px; width: 85px; height: 115px; font-size: 35px; cursor: pointer; transition: .3s; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+.puerta span { font-size: 11px; font-weight: bold; margin-top: 10px; }
+
+.puerta:hover:not(:disabled) { background: var(--rosa); transform: translateY(-7px); }
+
+.puerta:disabled { cursor: not-allowed; opacity: .7; }
+
+#resultado-juego { text-align: center; color: var(--morado); font-weight: bold; min-height: 45px; }
+
+.boton-juego { display: block; width: 100%; padding: 13px; margin-top: 15px; background: var(--morado); color: white; border: none; border-radius: 4px; font-size: 11px; font-weight: 900; letter-spacing: 1px; cursor: pointer; transition: .3s; }
+
+.boton-juego:hover { background: var(--rosa); transform: translateY(-3px); }
+
+.puntuacion { text-align: center; margin-top: 18px; font-size: 13px; color: var(--morado); font-weight: bold; }
+
+.puntuacion span { color: #d96b91; font-size: 20px; }
+
+/* TEST DE PERSONALIDAD */
+
+.test-card { border-top-color: var(--amarillo); }
+
+.test-card label { display: block; font-size: 13px; color: var(--morado); font-weight: bold; margin: 20px 0 12px; }
+
+.test-card select { width: 100%; padding: 13px; border: 1px solid #e5dbe6; border-radius: 5px; background: #fdfbfe; font-family: inherit; font-size: 12px; color: #49335f; }
+
+#resultado-test { margin-top: 20px; background: #f8e4eb; padding: 15px; border-radius: 5px; color: var(--morado); font-weight: bold; text-align: center; min-height: 50px; }
+
+/* COTILLEO ALEATORIO */
+
+.cotilleo-card { border-top-color: var(--azul); }
+
+.papel-cotilleo { background: #fff0ad; padding: 25px; margin: 20px 0; min-height: 125px; transform: rotate(-1deg); box-shadow: 3px 5px 10px #00000010; }
+
+.papel-cotilleo span { font-size: 10px; font-weight: 900; letter-spacing: 2px; color: #b64c79; }
+
+.papel-cotilleo p { font-size: 14px; color: #49335f; font-weight: bold; margin-top: 15px; }
+
+/* LA SUERTE */
+
+.suerte-card { border-top-color: var(--coral); }
+
+.bola-suerte { width: 105px; height: 105px; margin: 25px auto; border-radius: 50%; background: linear-gradient(135deg, #49335f, #a36a9b); color: var(--amarillo); display: flex; justify-content: center; align-items: center; font-size: 45px; font-weight: 900; box-shadow: 0 8px 20px #49335f35; transition: .4s; }
+
+.bola-suerte.girar { transform: rotate(360deg) scale(1.1); }
+
+#resultado-suerte { text-align: center; font-weight: bold; color: var(--morado); min-height: 45px; }
+
+/* CONTACTO */
+
+.contacto { padding: 85px 9%; background: #f7e5ed; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+
+.contacto-texto h2 { color: var(--morado); font-size: 40px; line-height: 1.2; margin: 18px 0; }
+
+.contacto-texto p { font-size: 14px; color: #766b7b; margin-bottom: 15px; }
+
+.contacto form { background: white; padding: 32px; border-radius: 8px; box-shadow: 0 10px 30px #49335f15; display: flex; flex-direction: column; gap: 10px; }
+
+.contacto label { font-size: 12px; font-weight: bold; color: var(--morado); margin-top: 8px; }
+
+.contacto input, .contacto textarea, .contacto select { width: 100%; padding: 13px; border: 1px solid #e5dbe6; border-radius: 4px; font-family: inherit; font-size: 12px; background: #fdfbfe; outline: none; transition: .3s; }
+
+.contacto input:focus, .contacto textarea:focus, .contacto select:focus { border-color: var(--rosa); }
+
+.contacto button { background: var(--morado); color: white; border: none; padding: 15px; font-weight: 900; letter-spacing: 1px; cursor: pointer; margin-top: 12px; transition: .3s; }
+
+.contacto button:hover { background: var(--rosa); transform: translateY(-3px); }
+
+#respuesta { font-size: 12px; font-weight: bold; color: #39846a; margin-top: 10px; }
+
+/* FOOTER */
+
+footer { background: #352543; color: white; text-align: center; padding: 50px 20px; }
+
+footer h2 { font-size: 30px; letter-spacing: 3px; color: var(--amarillo); margin-bottom: 10px; }
+
+footer p { font-size: 12px; color: #d8cbdc; margin: 10px; }
+
+.footer-line { height: 3px; width: 65px; background: var(--rosa); margin: 25px auto; }
+
+footer small { display: block; font-size: 10px; color: #bdb0c4; margin: 18px 0 25px; }
+
+footer a { color: var(--amarillo); text-decoration: none; font-size: 11px; font-weight: bold; letter-spacing: 1px; }
+
+/* ANIMACIONES */
+
+@keyframes aparecer { from { opacity: 0; transform: translateY(25px); }
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+}
+
+/* ADAPTACIÓN A MÓVILES */
+
+@media (max-width: 850px) {
+
+.menu {
+    justify-content: center;
+}
+
+.menu ul {
+    justify-content: center;
+    gap: 13px;
+}
+
+.hero {
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-texto {
+    margin: auto;
+}
+
+.hero-info {
+    justify-content: center;
+}
+
+.historia-grid,
+.contacto {
+    grid-template-columns: 1fr;
+}
+
+.tarjetas {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.noticias {
+    grid-template-columns: 1fr;
+}
+
+.juegos-grid {
+    grid-template-columns: 1fr;
+}
+
+
+}
+
+@media (max-width: 550px) {
+
+.tarjetas,
+.curiosidades-grid {
+    grid-template-columns: 1fr;
+}
+
+.seccion {
+    padding: 60px 7%;
+}
+
+.hero {
+    padding: 55px 7%;
+}
+
+.hero h1 {
+    font-size: 48px;
+}
+
+.hero-dibujo {
+    width: 250px;
+}
+
+.junta-contenido {
+    padding: 25px;
+}
+
+.junta h2 {
+    font-size: 25px;
+}
+
+.contacto-texto h2 {
+    font-size: 32px;
+}
+
+.juego-card {
+    padding: 22px;
+}
+
+.puertas {
+    gap: 8px;
+}
+
+.puerta {
+    width: 75px;
+    height: 100px;
+}
+
+
+}
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+
+<html lang="es">
+
+<head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Desengaño 21 | Aquí no hay quien viva</title> <link rel="stylesheet" href="style.css"> </head>
+
+<body>
+
+<header> <nav class="menu"> <a href="#inicio" class="logo">DESENGAÑO <span>21</span></a>
+
+    <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#historia">La comunidad</a></li>
+        <li><a href="#vecinos">Los vecinos</a></li>
+        <li><a href="#cotilleos">Cotilleos</a></li>
+        <li><a href="#juegos">Juegos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</nav>
+
+
+</header>
+
+<main>
+
+<!-- PORTADA -->
+
+<section id="inicio" class="hero">
+
+    <div class="hero-texto">
+
+        <span class="etiqueta">CALLE DESENGAÑO, 21 · MADRID</span>
+
+        <h1>AQUÍ NO HAY<br>QUIEN <span>VIVA</span></h1>
+
+        <p class="frase">
+            Un edificio, muchos vecinos y demasiados problemas.
+            Bienvenido a la comunidad donde nunca pasa nada normal.
+        </p>
+
+        <a href="#historia" class="boton">
+            DESCUBRIR LA COMUNIDAD
+        </a>
+
+        <div class="hero-info">
+            <span>DESDE 2003</span>
+        </div>
+
+    </div>
+
+    <div class="hero-dibujo">
+
+        <div class="cartel">
+            COMUNIDAD<br>DE PROPIETARIOS
+        </div>
+
+        <div class="edificio">
+
+            <div class="tejado"></div>
+
+            <div class="piso-edificio">
+                <div class="ventana"><span>1A</span></div>
+                <div class="ventana"><span>1B</span></div>
+            </div>
+
+            <div class="piso-edificio">
+                <div class="ventana"><span>2A</span></div>
+                <div class="ventana"><span>2B</span></div>
+            </div>
+
+            <div class="piso-edificio">
+                <div class="ventana"><span>3A</span></div>
+                <div class="ventana"><span>3B</span></div>
+            </div>
+
+            <div class="entrada">
+                <span>21</span>
+            </div>
+
+        </div>
+
+        <div class="pegatina">
+            SE RUEGA<br>SILENCIO
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AVISO -->
+
+<div class="franja">
+    <strong>AVISO DE LA COMUNIDAD</strong>
+    <span>Se recuerda a los vecinos que las reuniones pueden alargarse DEMASIADO.</span>
+</div>
+
+
+<!-- HISTORIA -->
+
+<section id="historia" class="seccion historia">
+
+    <div class="titulo-seccion">
+        <span class="numero-seccion">01 / CONOCE LA SERIE</span>
+
+        <h2>Bienvenidos a<br>Desengaño 21</h2>
+
+        <p>
+            El edificio donde la convivencia es todo un espectáculo.
+        </p>
+    </div>
+
+    <div class="historia-grid">
+
+        <div class="historia-texto">
+
+            <h3>Mucho más que una comunidad de vecinos</h3>
+
+            <p>
+                <strong>Aquí no hay quien viva</strong> es una serie
+                española de comedia estrenada en septiembre de 2003.
+                La historia se desarrolla en un edificio ficticio
+                situado en la calle Desengaño 21, donde conviven
+                personas con personalidades muy diferentes.
+            </p>
+
+            <p>
+                A lo largo de sus episodios, los vecinos tienen que
+                enfrentarse a todo tipo de situaciones: problemas
+                con el ascensor, reuniones interminables, discusiones,
+                relaciones sentimentales y secretos que nunca
+                permanecen ocultos demasiado tiempo.
+            </p>
+
+            <p>
+                Una de las características más importantes de la serie
+                es su forma de representar la convivencia. Situaciones
+                cotidianas se convierten en auténticos conflictos
+                que terminan afectando a todo el edificio.
+            </p>
+
+            <p>
+                Su humor, sus diálogos y la personalidad de sus
+                personajes hicieron que se convirtiera en una de
+                las comedias más populares de la televisión española.
+            </p>
+
+            <div class="mini-frase">
+                <span>FRASE DE LA COMUNIDAD</span>
+                <p>«Un poquito de por favor»</p>
+            </div>
+
+        </div>
+
+        <div class="ficha">
+
+            <h3>FICHA TÉCNICA</h3>
+
+            <div><span>Nombre</span><b>Aquí no hay quien viva</b></div>
+            <div><span>Estreno</span><b>2003</b></div>
+            <div><span>Final</span><b>2006</b></div>
+            <div><span>País</span><b>España</b></div>
+            <div><span>Género</span><b>Comedia</b></div>
+            <div><span>Temporadas</span><b>5</b></div>
+            <div><span>Capítulos</span><b>90</b></div>
+            <div><span>Localización</span><b>Desengaño 21</b></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PERSONAJES -->
+
+<section id="vecinos" class="seccion vecinos">
+
+    <div class="titulo-seccion">
+        <span class="numero-seccion">02 / LOS HABITANTES</span>
+
+        <h2>Conoce a los vecinos</h2>
+
+        <p>
+            Cada uno tiene su propia historia, sus manías
+            y una forma muy rarita de entender la convivencia.
+        </p>
+    </div>
+
+    <div class="tarjetas">
+
+        <article class="personaje morado">
+
+            <span class="piso">PRESIDENCIA</span>
+
+            <div class="inicial">JC</div>
+
+            <h3>Juan Cuesta</h3>
+
+            <p>
+                El presidente de la comunidad. Intenta organizar
+                el edificio y mantener las normas, aunque sus
+                vecinos no siempre colaboran.
+            </p>
+
+            <small>Personalidad: responsable y perfeccionista.</small>
+
+        </article>
+
+
+        <article class="personaje amarillo">
+
+            <span class="piso">EL TRÍO</span>
+
+            <div class="inicial">MVC</div>
+
+            <h3>Marisa, Vicenta y Concha</h3>
+
+            <p>
+                Tres vecinas inseparables. Siempre están pendientes
+                de lo que ocurre en el edificio y conocen todos
+                los secretos de sus habitantes.
+            </p>
+
+            <small>Personalidad: cotillas y divertidas.</small>
+
+        </article>
+
+
+        <article class="personaje naranja">
+
+            <span class="piso">PORTERÍA</span>
+
+            <div class="inicial">E</div>
+
+            <h3>Emilio</h3>
+
+            <p>
+                El portero. Conoce a todos
+                los vecinos y se mete en todos los problemas.
+            </p>
+
+            <small>Personalidad: cotilla, cariñoso y divertido.</small>
+
+        </article>
+
+
+        <article class="personaje rosa">
+
+            <span class="piso">3.º A</span>
+
+            <div class="inicial">L</div>
+
+            <h3>Lucía</h3>
+
+            <p>
+                Una muchachita independiente que llega al edificio con Roberto
+                y acaba viviendo momentos inesperados y tristes.
+            </p>
+
+            <small>Personalidad: independiente y orgullosa.</small>
+
+        </article>
+
+
+        <article class="personaje azul">
+
+            <span class="piso">EL ÁTICO</span>
+
+            <div class="inicial">MF</div>
+
+            <h3>Mauri y Fernando</h3>
+
+            <p>
+                Una pareja que protagoniza algunas de las
+                historias más importantes de la serie,
+                con situaciones normales y malentendidos de pareja.
+            </p>
+
+            <small>Personalidad: diferentes pero inseparables.</small>
+
+        </article>
+
+
+        <article class="personaje verde">
+
+            <span class="piso">VIDEOCLUB</span>
+
+            <div class="inicial">P</div>
+
+            <h3>Paco</h3>
+
+            <p>
+                El dueño del videoclub y uno de los personajes
+                más graciosos y únicos del edificio.
+            </p>
+
+            <small>Personalidad: sociable y único.</small>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- JUNTA -->
+
+<section class="junta">
+
+    <div class="junta-contenido">
+
+        <span class="numero-seccion">COMUNICADO OFICIAL Nº 21</span>
+
+        <h2>Junta extraordinaria de vecinos</h2>
+
+        <p>
+            Se convoca a todos los propietarios a una nueva
+            junta de la comunidad.
+        </p>
+
+        <h3>ORDEN DEL DÍA</h3>
+
+        <ul>
+            <li>Discutir por los ruidos del edificio.</li>
+            <li>Resolver los problemas del ascensor.</li>
+            <li>Investigar quién ha dejado basura en el portal.</li>
+            <li>Escuchar las quejas del presidente.</li>
+            <li>Intentar llegar a un acuerdo entre los vecinos.</li>
+        </ul>
+
+        <div class="firma">
+            Juan Cuesta<br>
+            <span>Presidente de la comunidad</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COTILLEOS -->
+
+<section id="cotilleos" class="seccion cotilleos">
+
+    <div class="titulo-seccion">
+
+        <span class="numero-seccion">03 / ÚLTIMA HORA</span>
+
+        <h2>El tablón del rellano</h2>
+
+        <p>
+            Todo lo que ocurre en Desengaño 21 acaba siendo
+            conocido por los vecinos.
+        </p>
+
+    </div>
+
+    <div class="noticias">
+
+        <article class="nota nota-amarilla">
+
+            <span>NOTICIA Nº 01</span>
+
+            <h3>Problemas en el portal</h3>
+
+            <p>
+                Una nueva discusión entre vecinos vuelve a
+                interrumpir la tranquilidad del edificio.
+                El presidente intenta poner orden.
+            </p>
+
+            <small>Publicado en el tablón de anuncios.</small>
+
+        </article>
+
+
+        <article class="nota nota-rosa">
+
+            <span>NOTICIA Nº 02</span>
+
+            <h3>El amor está en el edificio</h3>
+
+            <p>
+                Relaciones, celos, rupturas y reconciliaciones.
+                Las historias sentimentales de los vecinos
+                nunca dejan de sorprender.
+            </p>
+
+            <small>Información del rellano.</small>
+
+        </article>
+
+
+        <article class="nota nota-azul">
+
+            <span>NOTICIA Nº 03</span>
+
+            <h3>Las noticias vuelan</h3>
+
+            <p>
+                Marisa, Vicenta y Concha vuelven a demostrar
+                que en esta comunidad no hay secreto
+                que consiga permanecer oculto.
+            </p>
+
+            <small>Última hora de Desengaño 21.</small>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- CURIOSIDADES -->
+
+<section class="curiosidades seccion">
+
+    <div class="titulo-seccion">
+
+        <span class="numero-seccion">04 / PARA LOS MÁS FANS</span>
+
+        <h2>Curiosidades de la serie</h2>
+
+        <p>
+            Algunos detalles que hacen especial a esta comedia.
+        </p>
+
+    </div>
+
+    <div class="curiosidades-grid">
+
+        <article>
+            <span>01</span>
+            <h3>Una dirección inolvidable</h3>
+            <p>
+                Desengaño 21 es una dirección ficticia que
+                se ha convertido en uno de los lugares
+                más reconocibles de la televisión española.
+            </p>
+        </article>
+
+        <article>
+            <span>02</span>
+            <h3>La importancia del edificio</h3>
+            <p>
+                El portal, las viviendas y las zonas comunes
+                son fundamentales para el desarrollo
+                de las diferentes historias.
+            </p>
+        </article>
+
+        <article>
+            <span>03</span>
+            <h3>El humor cotidiano</h3>
+            <p>
+                Muchos de los conflictos nacen de situaciones
+                normales que terminan convirtiéndose
+                en auténticos disparates.
+            </p>
+        </article>
+
+        <article>
+            <span>04</span>
+            <h3>Una serie muy recordada</h3>
+            <p>
+                A pesar de haber terminado en 2006,
+                continúa teniendo seguidores y sus escenas
+                siguen circulando por internet.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- JUEGOS INTERACTIVOS -->
+
+<section id="juegos" class="seccion juegos">
+
+    <div class="titulo-seccion">
+
+        <span class="numero-seccion">05 / DIVERSIÓN EN LA COMUNIDAD</span>
+
+        <h2>¡Juega con los vecinos!</h2>
+
+        <p>
+            En Desengaño 21 nunca hay un día tranquilo.
+            Demuestra cuánto sabes de la comunidad.
+        </p>
+
+    </div>
+
+    <div class="juegos-grid">
+
+        <!-- JUEGO 1 -->
+
+        <article class="juego-card">
+
+            <span class="juego-etiqueta">🎮 JUEGO 01</span>
+
+            <h3>¿Dónde está Emilio?</h3>
+
+            <p>
+                Emilio se ha escondido en una de estas tres puertas.
+                ¿Serás capaz de encontrarlo?
+            </p>
+
+            <div class="puertas">
+
+                <button class="puerta" onclick="buscarEmilio(0)">
+                    🚪<span>1.º A</span>
+                </button>
+
+                <button class="puerta" onclick="buscarEmilio(1)">
+                    🚪<span>2.º A</span>
+                </button>
+
+                <button class="puerta" onclick="buscarEmilio(2)">
+                    🚪<span>3.º A</span>
+                </button>
+
+            </div>
+
+            <p id="resultado-juego">
+                ¡Elige una puerta para encontrar a Emilio!
+            </p>
+
+            <button class="boton-juego" onclick="reiniciarJuego()">
+                VOLVER A JUGAR
+            </button>
+
+            <div class="puntuacion">
+                Aciertos: <span id="puntos">0</span>
+            </div>
+
+        </article>
+
+
+        <!-- JUEGO 2 -->
+
+        <article class="juego-card test-card">
+
+            <span class="juego-etiqueta">🧠 TEST 02</span>
+
+            <h3>¿Qué vecino eres?</h3>
+
+            <p>
+                Responde a esta pregunta y descubre
+                qué personaje de la serie se parece más a ti.
+            </p>
+
+            <label for="respuesta-test">
+                ¿Qué harías si tus vecinos montan una fiesta a las 3 de la mañana?
+            </label>
+
+            <select id="respuesta-test">
+
+                <option value="">Elige tu respuesta</option>
+
+                <option value="juan">
+                    Llamaría a una reunión extraordinaria.
+                </option>
+
+                <option value="marisa">
+                    Me asomaría a cotillear.
+                </option>
+
+                <option value="emilio">
+                    Me metería en medio de la fiesta.
+                </option>
+
+                <option value="lucia">
+                    Me iría a dormir a otro sitio.
+                </option>
+
+                <option value="mauri">
+                    Me quejaría y discutiría con mi pareja.
+                </option>
+
+                <option value="paco">
+                    ¡Me uniría a la fiesta!
+                </option>
+
+            </select>
+
+            <button class="boton-juego" onclick="hacerTest()">
+                DESCUBRIR MI PERSONAJE
+            </button>
+
+            <p id="resultado-test"></p>
+
+        </article>
+
+
+        <!-- JUEGO 3 -->
+
+        <article class="juego-card cotilleo-card">
+
+            <span class="juego-etiqueta">📰 COTILLEO 03</span>
+
+            <h3>El cotilleo del día</h3>
+
+            <p>
+                Las tres señoras del edificio siempre tienen
+                algo que contar. ¡Descubre el último rumor!
+            </p>
+
+            <div class="papel-cotilleo">
+
+                <span>ÚLTIMA HORA</span>
+
+                <p id="cotilleo-aleatorio">
+                    Pulsa el botón para descubrir qué ha pasado.
+                </p>
+
+            </div>
+
+            <button class="boton-juego" onclick="nuevoCotilleo()">
+                DESCUBRIR COTILLEO
+            </button>
+
+        </article>
+
+
+        <!-- JUEGO 4 -->
+
+        <article class="juego-card suerte-card">
+
+            <span class="juego-etiqueta">🎲 JUEGO 04</span>
+
+            <h3>La suerte de Desengaño 21</h3>
+
+            <p>
+                ¿Qué te depara hoy la comunidad?
+                Pulsa el botón y descubre tu destino.
+            </p>
+
+            <div class="bola-suerte" id="bola-suerte">
+                ?
+            </div>
+
+            <p id="resultado-suerte">
+                ¡Atrévete a descubrirlo!
+            </p>
+
+            <button class="boton-juego" onclick="miSuerte()">
+                DESCUBRIR MI SUERTE
+            </button>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACTO -->
+
+<section id="contacto" class="contacto">
+
+    <div class="contacto-texto">
+
+        <span class="numero-seccion">06 / BUZÓN DE SUGERENCIAS</span>
+
+        <h2>Tu opinión también cuenta</h2>
+
+        <p>
+            Si vivieras en Desengaño 21, ¿con qué vecino
+            te llevarías mejor? ¿Y con cuál tendrías más problemas?
+        </p>
+
+        <p>
+            Déjanos tu opinión en el buzón de la comunidad.
+        </p>
+
+    </div>
+
+    <form id="formulario">
+
+        <label for="nombre">Nombre</label>
+
+        <input type="text" id="nombre"
+            placeholder="Escribe tu nombre" required>
+
+        <label for="email">Correo electrónico</label>
+
+        <input type="email" id="email"
+            placeholder="Tu correo electrónico" required>
+
+        <label for="personaje">Personaje favorito</label>
+
+        <select id="personaje" required>
+            <option value="">Selecciona un personaje</option>
+            <option>Juan Cuesta</option>
+            <option>Marisa, Vicenta y Concha</option>
+            <option>Emilio</option>
+            <option>Lucía</option>
+            <option>Mauri y Fernando</option>
+            <option>Paco</option>
+        </select>
+
+        <label for="mensaje">Tu opinión</label>
+
+        <textarea id="mensaje" rows="4"
+            placeholder="Escribe aquí tu mensaje..." required></textarea>
+
+        <button type="submit">ENVIAR MENSAJE</button>
+
+        <p id="respuesta"></p>
+
+    </form>
+
+</section>
+
+
+</main>
+
+<footer>
+
+<h2>DESENGAÑO 21</h2>
+
+<div class="footer-line"></div>
+
+<p>Míriam Rodriguez Solís · 2.º Bachillerato</p>
+
+<small>
+    Te quiero profe.
+</small>
+
+<a href="#inicio">VOLVER AL PRINCIPIO ↑</a>
+
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
+
+  <script>
+    // ===================================== // FORMULARIO DE CONTACTO // =====================================
+
+const formulario = document.getElementById("formulario");
+
+formulario.addEventListener("submit", function(event) {
+
+event.preventDefault();
+
+const nombre = document.getElementById("nombre").value;
+const personaje = document.getElementById("personaje").value;
+
+const respuesta = document.getElementById("respuesta");
+
+respuesta.textContent = "Gracias, " + nombre +
+    ". Tu opinión sobre " + personaje +
+    " ha quedado registrada en el tablón de la comunidad.";
+
+formulario.reset();
+
+
+});
+
+// ===================================== // EFECTO EN LAS TARJETAS // =====================================
+
+const personajes = document.querySelectorAll(".personaje");
+
+personajes.forEach(function(personaje) {
+
+personaje.addEventListener("mouseenter", function() {
+    personaje.style.transition = "0.3s";
+});
+
+
+});
+
+// ===================================== // CAMBIAR COLOR DEL AVISO // =====================================
+
+const aviso = document.querySelector(".franja");
+
+aviso.addEventListener("mouseenter", function() { aviso.style.backgroundColor = "#e99575"; });
+
+aviso.addEventListener("mouseleave", function() { aviso.style.backgroundColor = "#f4c65e"; });
+
+// ===================================== // JUEGO 1: ENCUENTRA A EMILIO // =====================================
+
+let puertaEmilio = Math.floor(Math.random() * 3);
+
+let puntos = 0;
+
+let juegoTerminado = false;
+
+function buscarEmilio(puerta) {
+
+if (juegoTerminado) {
+    return;
+}
+
+const resultado = document.getElementById("resultado-juego");
+
+const puertas = document.querySelectorAll(".puerta");
+
+if (puerta === puertaEmilio) {
+
+    resultado.textContent =
+        "🎉 ¡HAS ENCONTRADO A EMILIO! ¡Estaba escondido aquí!";
+
+    puntos++;
+
+    document.getElementById("puntos").textContent = puntos;
+
+    puertas[puerta].textContent = "😎";
+
+    juegoTerminado = true;
+
+    puertas.forEach(function(boton) {
+        boton.disabled = true;
+    });
+
+} else {
+
+    resultado.textContent =
+        "❌ ¡Aquí no está Emilio! ¡Prueba otra puerta!";
+
+    puertas[puerta].textContent = "❌";
+
+    puertas[puerta].disabled = true;
+
+}
+
+
+}
+
+function reiniciarJuego() {
+
+puertaEmilio = Math.floor(Math.random() * 3);
+
+juegoTerminado = false;
+
+document.getElementById("resultado-juego").textContent =
+    "¡Elige una puerta para encontrar a Emilio!";
+
+document.querySelectorAll(".puerta").forEach(function(boton, indice) {
+
+    boton.disabled = false;
+
+    boton.innerHTML = "🚪<span>" +
+        ["1.º A", "2.º A", "3.º A"][indice] +
+        "</span>";
+
+});
+
+
+}
+
+// ===================================== // JUEGO 2: TEST DE PERSONALIDAD // =====================================
+
+function hacerTest() {
+
+const respuesta = document.getElementById("respuesta-test").value;
+
+const resultado = document.getElementById("resultado-test");
+
+const personajesTest = {
+
+    juan: "📋 ¡Eres Juan Cuesta! Responsable, organizado y siempre dispuesto a convocar una reunión extraordinaria.",
+
+    marisa: "🍷 ¡Eres Marisa! Te encanta enterarte de todo y sabes perfectamente lo que ocurre en tu comunidad.",
+
+    emilio: "🔑 ¡Eres Emilio! Siempre estás metido en algún lío, pero tienes un gran corazón.",
+
+    lucia: "💅 ¡Eres Lucía! Independiente, decidida y con mucha personalidad.",
+
+    mauri: "💜 ¡Eres Mauri! Divertido, expresivo y nunca te faltan opiniones que compartir.",
+
+    paco: "🎬 ¡Eres Paco! Sociable, divertido y siempre dispuesto a disfrutar de la vida."
+
+};
+
+if (respuesta === "") {
+
+    resultado.textContent =
+        "¡Selecciona una respuesta primero!";
+
+    return;
+
+}
+
+resultado.textContent = personajesTest[respuesta];
+
+
+}
+
+// ===================================== // JUEGO 3: COTILLEO ALEATORIO // =====================================
+
+const cotilleos = [
+
+"🚨 ¡Última hora! Emilio ha vuelto a meterse en un problema en la portería.",
+
+"👀 Marisa, Vicenta y Concha saben algo que el resto de vecinos todavía desconoce.",
+
+"📢 Juan Cuesta ha convocado otra reunión extraordinaria. Los vecinos están preocupados.",
+
+"💔 Se rumorea que una pareja del edificio está atravesando una crisis.",
+
+"🛗 ¡Escándalo! Alguien ha vuelto a dejar el ascensor estropeado.",
+
+"🧹 El portal necesita una limpieza urgente y nadie quiere hacerse responsable.",
+
+"🤫 Un secreto ha salido a la luz y todo el edificio está revolucionado.",
+
+"🎬 Paco tiene una nueva historia que contar en el videoclub.",
+
+"🍷 Las señoras del edificio han vuelto a reunirse para comentar las últimas novedades.",
+
+"📋 Juan Cuesta está preparando un nuevo comunicado para todos los propietarios."
+
+
+];
+
+function nuevoCotilleo() {
+
+const numero = Math.floor(Math.random() * cotilleos.length);
+
+document.getElementById("cotilleo-aleatorio").textContent =
+    cotilleos[numero];
+
+
+}
+
+// ===================================== // JUEGO 4: LA SUERTE DE DESENGAÑO 21 // =====================================
+
+const suertes = [
+
+"🍀 ¡Hoy tendrás mucha suerte en el amor!",
+
+"🚪 ¡Cuidado! Hoy Emilio puede meterte en algún lío.",
+
+"💜 ¡Hoy será un día tranquilo en tu comunidad!",
+
+"📢 ¡Te espera una reunión interminable!",
+
+"👀 ¡Hoy descubrirás un cotilleo increíble!",
+
+"🎉 ¡Hoy tienes motivos para celebrar!",
+
+"🛗 ¡Hoy el ascensor funcionará perfectamente!",
+
+"🍷 ¡Marisa tiene algo importante que contarte!",
+
+"⭐ ¡Hoy serás el vecino favorito de todos!",
+
+"😂 ¡Prepárate para un día lleno de situaciones absurdas!"
+
+
+];
+
+function miSuerte() {
+
+const numero = Math.floor(Math.random() * suertes.length);
+
+const bola = document.getElementById("bola-suerte");
+
+const resultado = document.getElementById("resultado-suerte");
+
+bola.classList.remove("girar");
+
+void bola.offsetWidth;
+
+bola.classList.add("girar");
+
+bola.textContent = "★";
+
+resultado.textContent = suertes[numero];
+
+
+}
+
+// ===================================== // MENSAJE DE BIENVENIDA EN LA CONSOLA // =====================================
+
+console.log("Bienvenido a Desengaño 21.");
+
+console.log("La comunidad está abierta.");
+
+console.log("¡Cuidado con los cotilleos!");
+  </script>
+</body>
+</html>
